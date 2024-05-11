@@ -3,7 +3,7 @@ import { EffectCreative } from "swiper/modules";
 
 export function ServicesCarousel() {
   return (
-    <div className="max-w-[80vw] m-auto">
+    <div className="max-w-[80vw] m-auto pb-10">
       <Swiper
         loop
         grabCursor={true}

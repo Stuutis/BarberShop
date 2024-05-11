@@ -7,7 +7,7 @@ import {
 
 export function Navigation() {
   return (
-    <nav className="bg-black bg-opacity-80 h-20 flex flex-col justify-center items-center gap-2">
+    <nav className="bg-black bg-opacity-80 h-20 flex flex-col justify-center items-center gap-2 sticky top-0 z-10">
       <div>
         <ul className="flex gap-3 text-slate-200">
           <NavigationLink linkDirection="#home" title="Home" />

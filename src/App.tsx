@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import "swiper/css/effect-creative";
+import { ContactFooter } from "./components/footer/contact-footer";
 export function App() {
   return (
     <div className="bg-slate-950 text-slate-200">
@@ -13,6 +14,7 @@ export function App() {
       <HomeCarousel />
       <About />
       <ServicesCarousel />
+      <ContactFooter />
     </div>
   );
 }
