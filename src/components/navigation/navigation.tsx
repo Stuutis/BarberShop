@@ -13,6 +13,7 @@ export function Navigation() {
           <NavigationLink linkDirection="#home" title="Home" />
           <NavigationLink linkDirection="#about" title="Sobre" />
           <NavigationLink linkDirection="#services" title="Serviços" />
+          <NavigationLink linkDirection="#contact" title="Contato" />
         </ul>
       </div>
       <ul className="flex gap-6">

@@ -9,7 +9,7 @@ import "swiper/css/effect-creative";
 import { ContactFooter } from "./components/footer/contact-footer";
 export function App() {
   return (
-    <div className="bg-slate-950 text-slate-200">
+    <div className="bg-slate-950 text-slate-200" id="home">
       <Navigation />
       <HomeCarousel />
       <About />
