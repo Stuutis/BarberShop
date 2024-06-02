@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import image1 from "../../assets/pictures/agustin-fernandez-1Pmp9uxK8X8-unsplash.jpg";
 import image2 from "../../assets/pictures/eugene-chystiakov-taZSJ6xmt48-unsplash.jpg";
 import image3 from "../../assets/pictures/jason-leung-2seUdPQNy_I-unsplash.jpg";
@@ -9,9 +9,12 @@ export function HomeCarousel() {
     <Swiper
       spaceBetween={50}
       slidesPerView={1}
-      autoplay
+      autoplay={{
+        delay: 5000,
+        disableOnInteraction: false,
+      }}
       pagination={true}
-      modules={[Pagination]}
+      modules={[Autoplay, Pagination]}
       className="h-[60vh]"
       loop
     >

@@ -19,16 +19,16 @@ export function ServicesCarousel() {
         }}
         modules={[EffectCreative]}
       >
-        <SwiperSlide className="bg-red-200 h-96 rounded-lg flex flex-col justify-center items-center text-center ">
+        <SwiperSlide className="bg-secondary-custom h-96 rounded-lg flex flex-col justify-center items-center text-center ">
           Slide 1
         </SwiperSlide>
-        <SwiperSlide className="bg-red-300 h-96 rounded-lg flex flex-col justify-center items-center text-center">
+        <SwiperSlide className="bg-secondary-custom h-96 rounded-lg flex flex-col justify-center items-center text-center">
           Slide 2
         </SwiperSlide>
-        <SwiperSlide className="bg-red-400 h-96 rounded-lg flex flex-col justify-center items-center text-center">
+        <SwiperSlide className="bg-secondary-custom h-96 rounded-lg flex flex-col justify-center items-center text-center">
           Slide 3
         </SwiperSlide>
-        <SwiperSlide className="bg-red-500 h-96 rounded-lg flex flex-col justify-center items-center text-center">
+        <SwiperSlide className="bg-secondary-custom h-96 rounded-lg flex flex-col justify-center items-center text-center">
           Slide 4
         </SwiperSlide>
       </Swiper>

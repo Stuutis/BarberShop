@@ -7,13 +7,14 @@ import {
 
 export function Navigation() {
   return (
-    <nav className="bg-black bg-opacity-80 h-20 flex flex-col justify-center items-center gap-2 sticky top-0 z-10">
+    <nav className="bg-section-custom  h-20 flex flex-col justify-center items-center gap-2 sticky top-0 z-10 rounded-b-2xl">
       <div>
         <ul className="flex gap-3 text-slate-200">
           <NavigationLink linkDirection="#home" title="Home" />
           <NavigationLink linkDirection="#about" title="Sobre" />
           <NavigationLink linkDirection="#services" title="Serviços" />
           <NavigationLink linkDirection="#contact" title="Contato" />
+          <NavigationLink linkDirection="#portfolio" title="Portfolio" />
         </ul>
       </div>
       <ul className="flex gap-6">

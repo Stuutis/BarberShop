@@ -1,3 +1,5 @@
+import { AgendarButton } from "../agendar-button";
+
 export function About() {
   return (
     <section className="max-w-[80vw] m-auto py-10" id="about">
@@ -10,9 +12,7 @@ export function About() {
           Agende sua consulta hoje mesmo e descubra por que somos a escolha
           preferida dos homens que valorizam qualidade, estilo e tradição.
         </p>
-        <button className="bg-slate-600 p-4 rounded-3xl hover:bg-slate-500">
-          Agendar Horario
-        </button>
+        <AgendarButton />
       </div>
     </section>
   );
