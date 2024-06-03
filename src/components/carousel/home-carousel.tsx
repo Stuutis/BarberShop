@@ -14,6 +14,7 @@ export function HomeCarousel() {
       modules={[Autoplay, Pagination]}
       className="h-[60vh]"
       loop
+      id="home"
     >
       <SwiperSlide>
         <div className="flex flex-col justify-center items-center">

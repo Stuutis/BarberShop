@@ -5,9 +5,10 @@ import { Navigation } from "./components/navigation/navigation";
 import { ContactFooter } from "./components/footer/contact-footer";
 import "swiper/css";
 import "swiper/css/pagination";
-
+import "swiper/css/navigation";
 import "swiper/css/effect-cards";
 import "swiper/css/effect-creative";
+import { Portfolio } from "./components/portfolio/portfolio";
 
 export function App() {
   return (
@@ -16,6 +17,7 @@ export function App() {
       <HomeCarousel />
       <About />
       <ServicesCarousel />
+      <Portfolio />
       <ContactFooter />
     </div>
   );

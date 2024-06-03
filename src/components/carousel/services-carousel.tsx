@@ -32,7 +32,7 @@ export function ServicesCarousel() {
         modules={[EffectCreative, Pagination]}
         className="pb-10"
       >
-        <SwiperSlide className="bg-secondary-custom h-96 rounded-xl flex flex-col justify-center items-center text-center">
+        <SwiperSlide className="bg-secondary-custom rounded-xl flex flex-col justify-center items-center text-center ">
           <SlideContent
             titleText="Corte de Cabelo"
             imageSrc={barber}
@@ -42,7 +42,7 @@ export function ServicesCarousel() {
             altText=""
           />
         </SwiperSlide>
-        <SwiperSlide className="bg-secondary-custom h-96 rounded-lg flex flex-col justify-center items-center text-center">
+        <SwiperSlide className="bg-secondary-custom  rounded-lg flex flex-col justify-center items-center text-center">
           <SlideContent
             titleText="Produtos de qualidade"
             imageSrc={product}
@@ -50,7 +50,7 @@ export function ServicesCarousel() {
             altText={""}
           />
         </SwiperSlide>
-        <SwiperSlide className="bg-secondary-custom h-96 rounded-lg flex flex-col justify-center items-center text-center">
+        <SwiperSlide className="bg-secondary-custom  rounded-lg flex flex-col justify-center items-center text-center">
           <SlideContent
             imageSrc={hairStyle}
             titleText="Barba e Bigode"
@@ -58,7 +58,7 @@ export function ServicesCarousel() {
             altText=""
           />
         </SwiperSlide>
-        <SwiperSlide className="bg-secondary-custom h-96 rounded-lg flex flex-col justify-center items-center text-center">
+        <SwiperSlide className="bg-secondary-custom  rounded-lg flex flex-col justify-center items-center text-center">
           <SlideContent
             imageSrc={calendar}
             titleText="Assinatura Mensal"
