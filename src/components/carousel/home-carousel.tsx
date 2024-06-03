@@ -12,24 +12,19 @@ export function HomeCarousel() {
       slidesPerView={1}
       pagination={true}
       modules={[Autoplay, Pagination]}
-      className="h-[60vh]"
+      className="h-[60vh] xl:mx-auto xl:max-w-[80vw] 2xl:max-w-[60vw]"
       loop
       id="home"
     >
       <SwiperSlide>
-        <div className="flex flex-col justify-center items-center">
-          <p className="absolute z-10 p-8 text-center text-lg ">
-            Transforme seu visual com um corte de cabelo personalizado feito por
+        <HomeCarouselContent
+          imageSource={image1}
+          text=" Transforme seu visual com um corte de cabelo personalizado feito por
             nossos barbeiros experientes. Eles são especialistas em todos os
             estilos, desde o clássico ao moderno, garantindo que você sempre
-            saia satisfeito
-          </p>
-          <img
-            className="object-cover h-[60vh] w-screen opacity-60"
-            src={image1}
-            alt=""
-          />
-        </div>
+            saia satisfeito"
+          altText={""}
+        />
       </SwiperSlide>
       <SwiperSlide>
         <HomeCarouselContent
