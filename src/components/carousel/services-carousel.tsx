@@ -8,7 +8,7 @@ import calendar from "../../../src/assets/pictures/calendar.png";
 
 export function ServicesCarousel() {
   return (
-    <div className="max-w-[80vw] m-auto pb-10" id="services">
+    <div className="max-w-[80vw] m-auto pb-10 sm:max-w-[70vw]" id="services">
       <div className="flex justify-center">
         <h1 className="text-4xl mb-5">Serviços</h1>
       </div>
@@ -27,6 +27,16 @@ export function ServicesCarousel() {
           },
           next: {
             translate: ["100%", 0, 0],
+          },
+        }}
+        breakpoints={{
+          1024: {
+            slidesPerView: 2.1,
+            spaceBetween: 50,
+          },
+          1280: {
+            slidesPerView: 3,
+            spaceBetween: 50,
           },
         }}
         modules={[EffectCreative, Pagination]}

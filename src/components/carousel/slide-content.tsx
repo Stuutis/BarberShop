@@ -12,10 +12,10 @@ export function SlideContent({
   titleText,
 }: SlideContentProps) {
   return (
-    <div className="flex flex-col h-[420px] justify-center items-center px-4 py-8 gap-4 ">
-      <h1 className="text-xl">{titleText}</h1>
+    <div className="flex flex-col h-[420px] justify-center items-center px-4 py-8 gap-4 sm:justify-between md:h-[540px]">
+      <h1 className="text-xl sm:text-2xl">{titleText}</h1>
       <img className="h-40" src={imageSrc} alt={altText} />
-      <p>{contentText}</p>
+      <p className="sm:text-lg">{contentText}</p>
     </div>
   );
 }
