@@ -7,7 +7,7 @@ import image3 from "../../../src/assets/pictures/ahmad-ebadi-zAsMbiVW5-M-unsplas
 
 export function Portfolio() {
   return (
-    <div className="">
+    <div className="m-auto max-w-[80vw] pb-10">
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-3xl mb-3">Portfólio</h1>
         <p className="text-lg text-center mb-3">
@@ -22,15 +22,55 @@ export function Portfolio() {
           clickable: true,
         }}
         modules={[Navigation, Pagination]}
+        loop
+        breakpoints={{
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 10,
+          },
+        }}
       >
-        <SwiperSlide>
-          <img className="" src={image1} alt="" />
+        <SwiperSlide className="flex justify-center">
+          <img
+            className="rounded-xl sm:max-h-[60vh] sm:w-1/2 lg:w-3/4 2xl:w-3/4"
+            src={image1}
+            alt=""
+          />
         </SwiperSlide>
-        <SwiperSlide>
-          <img className="" src={image2} alt="" />
+        <SwiperSlide className="flex justify-center">
+          <img
+            className="rounded-xl sm:max-h-[60vh] sm:w-1/2 lg:w-3/4 2xl:w-3/4"
+            src={image2}
+            alt=""
+          />
         </SwiperSlide>
-        <SwiperSlide>
-          <img className="" src={image3} alt="" />
+        <SwiperSlide className="flex justify-center">
+          <img
+            className="rounded-xl sm:max-h-[60vh] sm:w-1/2 lg:w-3/4 2xl:w-3/4"
+            src={image3}
+            alt=""
+          />
+        </SwiperSlide>
+        <SwiperSlide className="flex justify-center">
+          <img
+            className="rounded-xl sm:max-h-[60vh] sm:w-1/2 lg:w-3/4 2xl:w-3/4"
+            src={image1}
+            alt=""
+          />
+        </SwiperSlide>
+        <SwiperSlide className="flex justify-center">
+          <img
+            className="rounded-xl sm:max-h-[60vh] sm:w-1/2 lg:w-3/4 2xl:w-3/4"
+            src={image2}
+            alt=""
+          />
+        </SwiperSlide>
+        <SwiperSlide className="flex justify-center">
+          <img
+            className="rounded-xl sm:max-h-[60vh] sm:w-1/2 lg:w-3/4 2xl:w-3/4"
+            src={image3}
+            alt=""
+          />
         </SwiperSlide>
       </Swiper>
     </div>
