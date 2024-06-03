@@ -17,11 +17,15 @@ export function NavigationLink({
     <div>
       {hasIcon ? (
         <li>
-          <a href={linkDirection}>{icon}</a>
+          <a className="hover:text-black" href={linkDirection}>
+            {icon}
+          </a>
         </li>
       ) : (
         <li>
-          <a href={linkDirection}>{title}</a>
+          <a className="hover:text-black" href={linkDirection}>
+            {title}
+          </a>
         </li>
       )}
     </div>

@@ -24,7 +24,7 @@ export function Navigation() {
           icon={<InstagramLogo />}
         />
         <NavigationLink
-          linkDirection="https://instagram.com"
+          linkDirection="https://facebook.com"
           hasIcon
           icon={<FacebookIcon />}
         />
