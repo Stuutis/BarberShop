@@ -1,9 +1,11 @@
 import { AgendarButton } from "../agendar-button";
+import logo from "../../assets/pictures/logo.jpeg";
 
 export function About() {
   return (
     <section className="max-w-[80vw] m-auto py-10 " id="about">
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 justify-center items-center">
+        <img className="rounded-2xl size-40" src={logo} alt="" />
         <p className="text-center">
           Bem-vindo à Barbearia Cortes & Estilos, onde tradição e modernidade se
           encontram para criar um visual impecável. Nossos mestres barbeiros
