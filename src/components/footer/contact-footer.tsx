@@ -9,7 +9,7 @@ import { ContactLink } from "./contact-link";
 
 export function ContactFooter() {
   return (
-    <footer id="contact" className="px-4 py-4 bg-slate-700">
+    <footer id="contact" className="px-4 py-4 bg-footer-custom">
       <div>
         <ul className="flex flex-col gap-4">
           <ContactLink

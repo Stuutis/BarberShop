@@ -11,7 +11,9 @@ export default {
         'primary-custom': '#1B98E0',
         'secondary-custom': '#247BA0',
         'section-custom': '#006494',
+        'footer-custom': '#0F2131',
         'text-custom': '#E8F1F2'
+
       }
     },
   },

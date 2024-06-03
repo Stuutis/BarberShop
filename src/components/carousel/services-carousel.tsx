@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCreative } from "swiper/modules";
+import { EffectCreative, Pagination } from "swiper/modules";
 import { SlideContent } from "./slide-content";
 import product from "../../../src/assets/pictures/barber.png";
 import barber from "../../../src/assets/pictures/barbershop.png";
@@ -14,8 +14,12 @@ export function ServicesCarousel() {
       </div>
       <Swiper
         loop
+        slidesPerView={1.1}
+        spaceBetween={10}
         grabCursor={true}
-        effect={"creative"}
+        pagination={{
+          clickable: true,
+        }}
         creativeEffect={{
           prev: {
             shadow: true,
@@ -25,9 +29,10 @@ export function ServicesCarousel() {
             translate: ["100%", 0, 0],
           },
         }}
-        modules={[EffectCreative]}
+        modules={[EffectCreative, Pagination]}
+        className="pb-10"
       >
-        <SwiperSlide className="bg-secondary-custom h-96 rounded-lg flex flex-col justify-center items-center text-center ">
+        <SwiperSlide className="bg-secondary-custom h-96 rounded-xl flex flex-col justify-center items-center text-center">
           <SlideContent
             titleText="Corte de Cabelo"
             imageSrc={barber}
@@ -57,7 +62,7 @@ export function ServicesCarousel() {
           <SlideContent
             imageSrc={calendar}
             titleText="Assinatura Mensal"
-            contentText="Pague uma taxa fixa mensal e tenha cortes ilimitados! Mantenha seu visual sempre impecável com nosso serviço de assinatura."
+            contentText="Pague uma taxa fixa mensal e tenha cortes ilimitados! Mantenha seu visual sempre impecável com nosso serviço de assinatura. "
             altText=""
           />
         </SwiperSlide>

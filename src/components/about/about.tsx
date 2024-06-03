@@ -2,7 +2,7 @@ import { AgendarButton } from "../agendar-button";
 
 export function About() {
   return (
-    <section className="max-w-[80vw] m-auto py-10" id="about">
+    <section className="max-w-[80vw] m-auto py-10 " id="about">
       <div className="flex flex-col gap-5">
         <p className="text-center">
           Bem-vindo à Barbearia Cortes & Estilos, onde tradição e modernidade se
