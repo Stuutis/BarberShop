@@ -99,7 +99,13 @@ export function Navigation() {
                   icon={<WhatsAppIcon />}
                 />
               </ul>
-              <AgendarButton />
+              <div>
+                <AgendarButton
+                  haveDirection
+                  text="Agendar Horário"
+                  linkDirection="/login"
+                />
+              </div>
             </div>
           </div>
         </section>

@@ -23,7 +23,7 @@ export function About() {
             escolha preferida dos homens que valorizam qualidade, estilo e
             tradição.
           </p>
-          <AgendarButton />
+          <AgendarButton text="Agendar Horário" linkDirection="/login" />
         </div>
       </div>
     </section>

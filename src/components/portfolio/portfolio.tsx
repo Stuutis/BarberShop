@@ -78,7 +78,7 @@ export function Portfolio() {
         <p>
           Agende já seu horario e garanta o melhor estilo pelo melhor preço!
         </p>
-        <AgendarButton />
+        <AgendarButton text="Agendar Horário" linkDirection="/login" />
       </div>
     </div>
   );
