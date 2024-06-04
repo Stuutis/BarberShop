@@ -8,7 +8,7 @@ import { AgendarButton } from "../agendar-button";
 
 export function Portfolio() {
   return (
-    <div className="m-auto max-w-[80vw] pb-10">
+    <div className="m-auto max-w-[80vw] pb-10" id="portfolio">
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-3xl mb-3">Portfólio</h1>
         <p className="text-lg text-center mb-3">

@@ -73,11 +73,11 @@ export function Navigation() {
                 alt=""
               />
               <ul className="flex flex-col items-center gap-3 text-slate-200 lg:flex-row">
-                <NavigationLink linkDirection="#home" title="Home" />
-                <NavigationLink linkDirection="#about" title="Sobre" />
-                <NavigationLink linkDirection="#services" title="Serviços" />
-                <NavigationLink linkDirection="#contact" title="Contato" />
-                <NavigationLink linkDirection="#portfolio" title="Portfolio" />
+                <NavigationLink linkDirection="/#home" title="Home" />
+                <NavigationLink linkDirection="/#about" title="Sobre" />
+                <NavigationLink linkDirection="/#services" title="Serviços" />
+                <NavigationLink linkDirection="/#contact" title="Contato" />
+                <NavigationLink linkDirection="/#portfolio" title="Portfolio" />
               </ul>
             </div>
             <div className="flex flex-col items-center gap-6 text-lg lg:flex-row">

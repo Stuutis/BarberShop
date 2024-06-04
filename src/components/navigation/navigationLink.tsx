@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-
+import { Link } from "react-router-dom";
 interface NavigationLinkProps {
   linkDirection: string;
   title?: string;
@@ -23,9 +23,8 @@ export function NavigationLink({
         </li>
       ) : (
         <li>
-          <a className="hover:text-black text-xl" href={linkDirection}>
-            {title}
-          </a>
+          {/* <a href={`/${linkDirection}`}>{title}</a> */}
+          <Link to={linkDirection}>{title}</Link>
         </li>
       )}
     </div>
