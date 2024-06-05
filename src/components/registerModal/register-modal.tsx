@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import { EyeOff, EyeOn } from "../../assets/svg/svgs";
 import backArrow from "../../assets/pictures/icons8-back-arrow-64.png";
 
@@ -8,17 +9,45 @@ interface RegisterModalProps {
 }
 
 export function RegisterModal({ show, handleClose }: RegisterModalProps) {
+  const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+
   if (!show) {
     return null;
   }
-
-  const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
 
   const handleShowPassword = () => {
     setIsPasswordShow(true);
   };
   const handleHidePassword = () => {
     setIsPasswordShow(false);
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert("As senhas não coincidem");
+      return;
+    }
+
+    try {
+      await axios.post("http://localhost:3333/users", {
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+      alert("Usuário criado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao criar usuário:", error);
+      alert("Erro ao criar usuário. Tente novamente.");
+      console.log("Dados:", firstName, lastName, email, password);
+    }
   };
 
   return (
@@ -34,7 +63,7 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
         <h1 className="text-3xl">Cadastre-se</h1>
       </div>
       <form
-        action=""
+        onSubmit={handleSubmit}
         className=" flex flex-col gap-2 mt-20 bg-section-custom pb-20 pt-12 rounded-ss-[70px]"
       >
         <div className="flex flex-col w-[80vw] m-auto">
@@ -45,6 +74,7 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
             required
             placeholder="John"
             id="firstName"
+            onChange={(e) => setFirstName(e.target.value)}
           />
           <span>Ultimo Nome</span>
           <input
@@ -53,6 +83,7 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
             required
             placeholder="Doe"
             id="lastName"
+            onChange={(e) => setLastName(e.target.value)}
           />
           <span>Email</span>
           <input
@@ -62,6 +93,7 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
             id="emailRegister"
             placeholder="johndoe@email.com"
             required
+            onChange={(e) => setEmail(e.target.value)}
           />
           <span>Senha</span>
           <div className="relative">
@@ -72,6 +104,7 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
               id="passwordRegister"
               placeholder="******"
               required
+              onChange={(e) => setPassword(e.target.value)}
             />
             <div
               onClick={handleShowPassword}
@@ -94,6 +127,7 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
             id="passwordRegisterConfirm"
             placeholder="******"
             required
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <input
             className="px-10 py-2 rounded-xl text-white bg-primary-custom"
