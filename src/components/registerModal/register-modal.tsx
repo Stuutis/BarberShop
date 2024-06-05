@@ -10,6 +10,8 @@ interface RegisterModalProps {
 
 export function RegisterModal({ show, handleClose }: RegisterModalProps) {
   const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
+  const [isPasswordConfirmShow, setIsPasswordConfirmShow] =
+    useState<boolean>(false);
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -25,6 +27,12 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
   };
   const handleHidePassword = () => {
     setIsPasswordShow(false);
+  };
+  const handleShowPasswordConfirm = () => {
+    setIsPasswordConfirmShow(true);
+  };
+  const handleHidePasswordConfirm = () => {
+    setIsPasswordConfirmShow(false);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -99,7 +107,7 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
           <div className="relative">
             <input
               className="p-2 rounded-ss-xl text-black mb-5 w-full"
-              type="password"
+              type={isPasswordShow ? "text" : "password"}
               name="passwordRegister"
               id="passwordRegister"
               placeholder="******"
@@ -120,15 +128,33 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
             </div>
           </div>
           <span>Confirme sua senha</span>
-          <input
-            className="p-2 rounded-ss-xl text-black mb-10"
-            type="password"
-            name="passwordRegisterConfirm"
-            id="passwordRegisterConfirm"
-            placeholder="******"
-            required
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+          <div className="relative">
+            <input
+              className="p-2 rounded-ss-xl text-black mb-10 w-full"
+              type={isPasswordConfirmShow ? "text" : "password"}
+              name="passwordRegisterConfirm"
+              id="passwordRegisterConfirm"
+              placeholder="******"
+              required
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <div
+              onClick={handleShowPasswordConfirm}
+              className={
+                isPasswordConfirmShow ? "hidden" : "absolute right-2 top-2.5"
+              }
+            >
+              <EyeOn />
+            </div>
+            <div
+              onClick={handleHidePasswordConfirm}
+              className={
+                isPasswordConfirmShow ? "absolute right-2 top-2" : "hidden"
+              }
+            >
+              <EyeOff />
+            </div>
+          </div>
           <input
             className="px-10 py-2 rounded-xl text-white bg-primary-custom"
             type="submit"
