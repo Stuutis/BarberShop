@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import logo from "../../assets/pictures/logo.jpeg";
 import { NavigationLink } from "./navigationLink";
 import {
   InstagramLogo,
@@ -7,6 +6,7 @@ import {
   FacebookIcon,
 } from "../../assets/svg/svgs";
 import { AgendarButton } from "../agendar-button";
+import logo from "../../assets/pictures/logo.jpeg";
 
 export function Navigation() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -28,6 +28,7 @@ export function Navigation() {
     <nav className="bg-section-custom  h-20 flex items-center gap-2 sticky top-0 z-10 rounded-b-2xl">
       <div>
         <section className="flex items-center ">
+          <h1 className="pl-4 text-xl lg:hidden">BarberShop</h1>
           <div
             className="mx-8 space-y-2 absolute right-0 lg:hidden"
             // Toggle isNavOpen state on click
