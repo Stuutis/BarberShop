@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
-import { EyeOff, EyeOn } from "../../assets/svg/svgs";
 import backArrow from "../../assets/pictures/icons8-back-arrow-64.png";
+import { Input } from "./input";
+import { PasswordInput } from "./password-input";
 
 interface RegisterModalProps {
   show: boolean;
@@ -9,6 +10,11 @@ interface RegisterModalProps {
 }
 
 export function RegisterModal({ show, handleClose }: RegisterModalProps) {
+  if (!show) {
+    return null;
+  }
+
+  const [passwordMatch, setPasswordMatch] = useState<boolean>(true);
   const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
   const [isPasswordConfirmShow, setIsPasswordConfirmShow] =
     useState<boolean>(false);
@@ -18,9 +24,14 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
-  if (!show) {
-    return null;
-  }
+  // Errors Message States
+  const [firstNameError, setFirstNameError] = useState<string | null>(null);
+  const [lastNameError, setLastNameError] = useState<string | null>(null);
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [passwordConfirmError, setPasswordConfirmError] = useState<
+    string | null
+  >(null);
 
   const handleShowPassword = () => {
     setIsPasswordShow(true);
@@ -35,11 +46,83 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
     setIsPasswordConfirmShow(false);
   };
 
+  const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setFirstName(value);
+    setFirstNameError(value.length < 1 ? "O campo não pode estar vazio" : null);
+    console.log(value);
+  };
+
+  const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setLastName(value);
+    setLastNameError(value.length < 1 ? "O campo não pode estar vazio" : null);
+    console.log(value);
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+
+    setEmailError(value.length < 1 ? "O campo não pode estar vazio" : null);
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setPassword(value);
+    setPasswordError(
+      value.length < 6
+        ? "A senha deve ter pelo menos 6 caracteres"
+        : !passwordMatch
+        ? "As senhas devem ser iguais"
+        : null
+    );
+  };
+
+  const handlePasswordConfirmChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = e.target.value;
+    setConfirmPassword(value);
+    setPasswordConfirmError(
+      password !== confirmPassword
+        ? "As senhas não são iguais"
+        : value.length === 0
+        ? "As senhas devem ser iguais"
+        : null
+    );
+  };
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("As senhas não coincidem");
+      setPasswordMatch(false);
+      return;
+    } else {
+      setPasswordMatch(true);
+    }
+
+    if (
+      firstName.length < 1 ||
+      lastName.length < 1 ||
+      email.length < 1 ||
+      password !== confirmPassword ||
+      password.length < 6
+    ) {
+      setFirstNameError(
+        firstName.length < 1 ? "O campo não pode estar vazio" : null
+      );
+      setLastNameError(
+        lastName.length < 1 ? "O campo não pode estar vazio" : null
+      );
+      setEmailError(email.length < 1 ? "O campo não pode estar vazio" : null);
+      setPasswordError(
+        password.length < 6 ? "A senha deve ter pelo menos 6 caracteres" : null
+      );
+      setPasswordConfirmError(
+        passwordConfirmError !== password ? "As devem ser iguais" : null
+      );
       return;
     }
 
@@ -75,92 +158,64 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
         className=" flex flex-col gap-2 mt-20 bg-section-custom pb-20 pt-12 rounded-ss-[70px]"
       >
         <div className="flex flex-col w-[80vw] m-auto">
-          <span>Primeiro Nome</span>
-          <input
-            className="p-2 rounded-ss-xl text-black mb-5"
+          <Input
             type="text"
-            required
             placeholder="John"
             id="firstName"
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={handleFirstNameChange}
+            spanText={"Primeiro Nome"}
+            errorMessage={firstNameError}
+            showErrorMessage={Boolean(firstNameError)}
           />
-          <span>Ultimo Nome</span>
-          <input
-            className="p-2 rounded-ss-xl text-black mb-5"
+          <Input
+            errorMessage={lastNameError}
+            spanText="Ultimo Nome"
             type="text"
-            required
             placeholder="Doe"
             id="lastName"
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={handleLastNameChange}
+            showErrorMessage={Boolean(lastNameError)}
           />
-          <span>Email</span>
-          <input
-            className="p-2 rounded-ss-xl text-black mb-5"
+          <Input
             type="email"
             name="emailRegister"
             id="emailRegister"
             placeholder="johndoe@email.com"
-            required
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
+            spanText={"Email"}
+            errorMessage={"O campo não pode estar vazio"}
+            showErrorMessage={Boolean(emailError)}
           />
-          <span>Senha</span>
-          <div className="relative">
-            <input
-              className="p-2 rounded-ss-xl text-black mb-5 w-full"
-              type={isPasswordShow ? "text" : "password"}
-              name="passwordRegister"
-              id="passwordRegister"
-              placeholder="******"
-              required
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <div
-              onClick={handleShowPassword}
-              className={isPasswordShow ? "hidden" : "absolute right-2 top-2.5"}
-            >
-              <EyeOn />
-            </div>
-            <div
-              onClick={handleHidePassword}
-              className={isPasswordShow ? "absolute right-2 top-2" : "hidden"}
-            >
-              <EyeOff />
-            </div>
-          </div>
-          <span>Confirme sua senha</span>
-          <div className="relative">
-            <input
-              className="p-2 rounded-ss-xl text-black mb-10 w-full"
-              type={isPasswordConfirmShow ? "text" : "password"}
-              name="passwordRegisterConfirm"
-              id="passwordRegisterConfirm"
-              placeholder="******"
-              required
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            <div
-              onClick={handleShowPasswordConfirm}
-              className={
-                isPasswordConfirmShow ? "hidden" : "absolute right-2 top-2.5"
-              }
-            >
-              <EyeOn />
-            </div>
-            <div
-              onClick={handleHidePasswordConfirm}
-              className={
-                isPasswordConfirmShow ? "absolute right-2 top-2" : "hidden"
-              }
-            >
-              <EyeOff />
-            </div>
-          </div>
-          <input
-            className="px-10 py-2 rounded-xl text-white bg-primary-custom"
-            type="submit"
-            value="Cadastrar"
-            id="registerButton"
+          <PasswordInput
+            spanText="Senha"
+            isPasswordShow={isPasswordShow}
+            hasError={passwordMatch}
+            errorMessage={passwordError}
+            showPasswordFunction={handleShowPassword}
+            hidePasswordFunction={handleHidePassword}
+            placeholder="******"
+            onChange={handlePasswordChange}
           />
+          <PasswordInput
+            spanText="Confirme a senha"
+            isPasswordShow={isPasswordConfirmShow}
+            hasError={passwordMatch}
+            errorMessage={passwordConfirmError}
+            showPasswordFunction={handleShowPasswordConfirm}
+            hidePasswordFunction={handleHidePasswordConfirm}
+            placeholder="******"
+            onChange={handlePasswordConfirmChange}
+          />
+          <div className="flex items-center justify-center">
+            <Input
+              type="submit"
+              value="Cadastrar"
+              id="registerButton"
+              submit
+              spanText={""}
+              errorMessage={null}
+            />
+          </div>
         </div>
       </form>
     </div>
