@@ -6,6 +6,7 @@ interface PasswordInputProps extends ComponentProps<"input"> {
   isPasswordShow: boolean;
   hasError: boolean;
   errorMessage: string | null;
+  showErrorMessage?: boolean;
   showPasswordFunction?: () => void;
   hidePasswordFunction?: () => void;
 }
@@ -15,6 +16,7 @@ export function PasswordInput({
   isPasswordShow,
   hasError,
   errorMessage,
+  showErrorMessage,
   showPasswordFunction,
   hidePasswordFunction,
   ...props
