@@ -4,7 +4,7 @@ import { Eye, EyeOff } from "lucide-react";
 interface PasswordInputProps extends ComponentProps<"input"> {
   spanText: string;
   isPasswordShow: boolean;
-  hasError: boolean;
+
   errorMessage: string | null;
   showErrorMessage?: boolean;
   showPasswordFunction?: () => void;
@@ -14,7 +14,7 @@ interface PasswordInputProps extends ComponentProps<"input"> {
 export function PasswordInput({
   spanText,
   isPasswordShow,
-  hasError,
+
   errorMessage,
   showErrorMessage,
   showPasswordFunction,
@@ -29,7 +29,9 @@ export function PasswordInput({
         type={isPasswordShow ? "text" : "password"}
         {...props}
       />
-      <div className={hasError ? "hidden" : "text-red-400 block font-bold"}>
+      <div
+        className={showErrorMessage ? "text-red-400 block font-bold" : "hidden"}
+      >
         {errorMessage}
       </div>
 

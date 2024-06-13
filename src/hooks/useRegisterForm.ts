@@ -20,6 +20,9 @@ export const useRegisterForm = () => {
   const [passwordConfirmError, setPasswordConfirmError] = useState<
     string | null
   >(null);
+  const [duplicateEmailError, setDuplicateEmailError] = useState<string | null>(
+    null
+  );
 
   const handleShowPassword = () => {
     setIsPasswordShow(true);
@@ -49,17 +52,18 @@ export const useRegisterForm = () => {
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEmail(value);
-
     setEmailError(value.length < 1 ? "O campo não pode estar vazio" : null);
+    setDuplicateEmailError(null);
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
     setPassword(value);
+
     setPasswordError(
-      value.length < 6
-        ? "A senha deve ter pelo menos 6 caracteres"
+      value.length < 8
+        ? "A senha deve ter pelo menos 8 caracteres"
         : !passwordMatch
         ? "As senhas devem ser iguais"
         : null
@@ -71,8 +75,13 @@ export const useRegisterForm = () => {
   ) => {
     const value = e.target.value;
     setConfirmPassword(value);
+
     setPasswordConfirmError(
-      !value.length ? "Você precisa confirmar a senha" : null
+      !value.length
+        ? "Você precisa confirmar a senha"
+        : !passwordMatch
+        ? "As senhas devem ser iguais"
+        : null
     );
   };
 
@@ -80,7 +89,6 @@ export const useRegisterForm = () => {
     event.preventDefault();
     if (password !== confirmPassword) {
       setPasswordMatch(false);
-      return;
     } else {
       setPasswordMatch(true);
     }
@@ -88,8 +96,8 @@ export const useRegisterForm = () => {
       firstName.length < 1 ||
       lastName.length < 1 ||
       email.length < 1 ||
-      password !== confirmPassword ||
-      password.length < 6
+      password.length < 8 ||
+      password !== confirmPassword
     ) {
       setFirstNameError(
         firstName.length < 1 ? "O campo não pode estar vazio" : null
@@ -99,13 +107,17 @@ export const useRegisterForm = () => {
       );
       setEmailError(email.length < 1 ? "O campo não pode estar vazio" : null);
       setPasswordError(
-        password.length < 6 ? "A senha deve ter pelo menos 6 caracteres" : null
+        password.length < 8
+          ? "A senha precisa ter pelo menos 8 caracteres"
+          : !passwordMatch && password.length > 1
+          ? "Você deve confirmar a senha1"
+          : null
       );
       setPasswordConfirmError(
-        confirmPassword !== password && password.length > 1
+        !passwordMatch && confirmPassword.length > 1
           ? "As senhas devem ser iguais"
           : confirmPassword.length < 1
-          ? "Você deve confirmar a senha"
+          ? "Você deve confirmar a senha2"
           : null
       );
       return;
@@ -121,7 +133,13 @@ export const useRegisterForm = () => {
       alert("Usuário criado com sucesso!");
     } catch (error) {
       console.error("Erro ao criar usuário:", error);
-      alert("Erro ao criar usuário. Tente novamente.");
+      if (axios.isAxiosError(error) && error.response) {
+        if (error.response.status === 409) {
+          setDuplicateEmailError("Email já está cadastrado.");
+        } else {
+          alert("Erro ao criar usuário. Tente novamente");
+        }
+      }
     }
   };
 
@@ -139,6 +157,7 @@ export const useRegisterForm = () => {
     emailError,
     passwordError,
     passwordConfirmError,
+    duplicateEmailError,
     handleShowPassword,
     handleHidePassword,
     handleShowPasswordConfirm,

@@ -14,7 +14,6 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
   }
 
   const {
-    passwordMatch,
     isPasswordShow,
     isPasswordConfirmShow,
     firstNameError,
@@ -22,6 +21,7 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
     emailError,
     passwordError,
     passwordConfirmError,
+    duplicateEmailError,
     handleShowPassword,
     handleHidePassword,
     handleShowPasswordConfirm,
@@ -76,13 +76,12 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
             placeholder="johndoe@email.com"
             onChange={handleEmailChange}
             spanText={"Email"}
-            errorMessage={emailError}
-            showErrorMessage={Boolean(emailError)}
+            errorMessage={emailError || duplicateEmailError}
+            showErrorMessage={Boolean(duplicateEmailError)}
           />
           <PasswordInput
             spanText="Senha"
             isPasswordShow={isPasswordShow}
-            hasError={passwordMatch}
             showPasswordFunction={handleShowPassword}
             hidePasswordFunction={handleHidePassword}
             placeholder="******"
@@ -94,7 +93,6 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
             spanText="Confirme a senha"
             placeholder="******"
             isPasswordShow={isPasswordConfirmShow}
-            hasError={passwordMatch}
             showPasswordFunction={handleShowPasswordConfirm}
             hidePasswordFunction={handleHidePasswordConfirm}
             onChange={handlePasswordConfirmChange}

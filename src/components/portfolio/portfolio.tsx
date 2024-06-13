@@ -16,7 +16,6 @@ export function Portfolio() {
         </p>
       </div>
       <Swiper
-        autoHeight={true}
         spaceBetween={20}
         navigation={true}
         pagination={{
