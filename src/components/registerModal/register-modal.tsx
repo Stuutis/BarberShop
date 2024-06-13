@@ -77,7 +77,9 @@ export function RegisterModal({ show, handleClose }: RegisterModalProps) {
             onChange={handleEmailChange}
             spanText={"Email"}
             errorMessage={emailError || duplicateEmailError}
-            showErrorMessage={Boolean(duplicateEmailError)}
+            showErrorMessage={
+              Boolean(duplicateEmailError) || Boolean(emailError)
+            }
           />
           <PasswordInput
             spanText="Senha"

@@ -58,16 +58,21 @@ export const useRegisterForm = () => {
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-
     setPassword(value);
 
-    setPasswordError(
-      value.length < 8
-        ? "A senha deve ter pelo menos 8 caracteres"
-        : !passwordMatch
-        ? "As senhas devem ser iguais"
-        : null
-    );
+    if (value.length >= 8) {
+      setPasswordError(null);
+    } else {
+      setPasswordError("A senha deve ter pelo menos 8 caracteres");
+    }
+
+    if (value === confirmPassword) {
+      setPasswordMatch(true);
+      setPasswordConfirmError(null);
+    } else if (confirmPassword.length > 0) {
+      setPasswordMatch(false);
+      setPasswordConfirmError("As senhas devem ser iguais");
+    }
   };
 
   const handlePasswordConfirmChange = (
@@ -76,28 +81,29 @@ export const useRegisterForm = () => {
     const value = e.target.value;
     setConfirmPassword(value);
 
-    setPasswordConfirmError(
-      !value.length
-        ? "Você precisa confirmar a senha"
-        : !passwordMatch
-        ? "As senhas devem ser iguais"
-        : null
-    );
+    if (value === password) {
+      setPasswordMatch(true);
+      setPasswordConfirmError(null);
+    } else if (value.length > 0) {
+      setPasswordMatch(false);
+      setPasswordConfirmError("As senhas devem ser iguais");
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
     if (password !== confirmPassword) {
       setPasswordMatch(false);
-    } else {
-      setPasswordMatch(true);
+      setPasswordConfirmError("As senhas devem ser iguais");
+      return;
     }
+
     if (
       firstName.length < 1 ||
       lastName.length < 1 ||
       email.length < 1 ||
-      password.length < 8 ||
-      password !== confirmPassword
+      password.length < 8
     ) {
       setFirstNameError(
         firstName.length < 1 ? "O campo não pode estar vazio" : null
@@ -109,15 +115,6 @@ export const useRegisterForm = () => {
       setPasswordError(
         password.length < 8
           ? "A senha precisa ter pelo menos 8 caracteres"
-          : !passwordMatch && password.length > 1
-          ? "Você deve confirmar a senha1"
-          : null
-      );
-      setPasswordConfirmError(
-        !passwordMatch && confirmPassword.length > 1
-          ? "As senhas devem ser iguais"
-          : confirmPassword.length < 1
-          ? "Você deve confirmar a senha2"
           : null
       );
       return;
@@ -137,7 +134,7 @@ export const useRegisterForm = () => {
         if (error.response.status === 409) {
           setDuplicateEmailError("Email já está cadastrado.");
         } else {
-          alert("Erro ao criar usuário. Tente novamente");
+          alert("Erro ao criar usuário. Tente novamente.");
         }
       }
     }
