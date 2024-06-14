@@ -1,8 +1,19 @@
+import { useLoginForm } from "../../hooks/useLoginForm";
 import { useState } from "react";
+import { Input } from "../registerModal/input";
 import logo from "../../assets/pictures/logo.jpeg";
 import { RegisterModal } from "../registerModal/register-modal";
 
 export function LoginForm() {
+  const {
+    email,
+    password,
+    error,
+    handleEmailChange,
+    handlePasswordChange,
+    handleSubmit,
+  } = useLoginForm();
+
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleOpenModal = () => {
@@ -21,28 +32,40 @@ export function LoginForm() {
         alt=""
       />
       <div className="bg-section-custom w-screen h-[500px] rounded-ss-[70px] pt-5 pb-10 flex flex-col items-center ">
-        <form action="" className=" flex flex-col items-center ">
+        <form
+          action=""
+          className="flex flex-col items-center "
+          onSubmit={handleSubmit}
+        >
           <h1 className="text-2xl my-5">Login</h1>
           <div className="flex flex-col gap-2 max-w-[80vw] w-full m-auto">
-            <span>Email</span>
-            <input
-              className="p-2 rounded-ss-xl text-black"
+            <Input
+              spanText={"Email"}
+              errorMessage={null}
+              placeholder="johndoe@email.com"
               type="email"
-              placeholder="johndoe@gmail.com"
+              name="emailLogin"
+              id="emailLogin"
+              value={email}
+              onChange={handleEmailChange}
               required
             />
-            <span>Senha</span>
-            <input
-              className="p-2 rounded-ss-xl text-black"
-              type="password"
+            <Input
+              spanText={"Senha"}
+              errorMessage={null}
               placeholder="Digite sua senha"
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
               required
             />
+            {error && <p className="text-red-400 font-bold">{error}</p>}
             <div className=" m-auto py-4">
               <input
                 className="px-10 py-2 rounded-xl text-white bg-primary-custom"
                 type="submit"
-                value="Login"
+                value="login"
+                id="loginButton"
               />
             </div>
           </div>
