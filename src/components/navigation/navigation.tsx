@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { NavigationLink } from "./navigationLink";
 import {
   InstagramLogo,
@@ -6,8 +7,8 @@ import {
   FacebookIcon,
 } from "../../assets/svg/svgs";
 import { AgendarButton } from "../agendar-button";
-import logo from "../../assets/pictures/logo.jpeg";
 import { useUser } from "../../context/userContext";
+import logo from "../../assets/pictures/logo.jpeg";
 
 export function Navigation() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -29,7 +30,9 @@ export function Navigation() {
     <nav className="bg-section-custom  h-20 flex items-center gap-2 sticky top-0 z-10 rounded-b-2xl">
       <div>
         <section className="flex items-center ">
-          <h1 className="pl-4 text-xl lg:hidden">BarberShop</h1>
+          <h1 className="pl-4 text-xl lg:hidden text-text-custom">
+            BarberShop
+          </h1>
 
           <div
             className="mx-8 space-y-2 absolute right-0 lg:hidden"
@@ -76,7 +79,9 @@ export function Navigation() {
                 alt=""
               />
               <div className="mb-3">
-                {isLoggedIn && <p>Bem-vindo, {userName}</p>}
+                {isLoggedIn && (
+                  <p className="text-text-custom">Bem-vindo, {userName}</p>
+                )}
               </div>
               <ul className="flex flex-col items-center gap-3 text-slate-200 lg:flex-row lg:pl-3">
                 <NavigationLink linkDirection="/#home" title="Home" />
@@ -86,8 +91,20 @@ export function Navigation() {
                 <NavigationLink linkDirection="/#portfolio" title="Portfolio" />
               </ul>
             </div>
+            {isLoggedIn ? (
+              <div>
+                <button className="text-text-custom cursor-pointer">
+                  <Link to={"/Agendamentos"}>Meus Agendamentos</Link>
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
+
             <div className="flex flex-col items-center gap-6 text-lg lg:flex-row">
-              <p className="lg:hidden">Nos siga nas redes sociais</p>
+              <p className="lg:hidden text-text-custom">
+                Nos siga nas redes sociais
+              </p>
               <ul className="flex gap-6">
                 <NavigationLink
                   linkDirection="https://instagram.com"

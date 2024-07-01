@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/home";
 import { Login } from "./pages/login";
 import { Scheduling } from "./pages/scheduling";
+import { Schedules } from "./pages/schedules";
 import { ScrollToTopOnMount } from "./utils/scrollToTop";
 import { UserProvider } from "./context/userContext";
 import "swiper/css";
@@ -20,6 +21,7 @@ export function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Agendamento" element={<Scheduling />} />
+          <Route path="/Agendamentos" element={<Schedules />} />
         </Routes>
       </BrowserRouter>
     </UserProvider>
