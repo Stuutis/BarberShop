@@ -7,6 +7,7 @@ export const useLoginForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
   const navigate = useNavigate();
   const { setUserName, setIsLoggedIn } = useUser();
 
@@ -16,6 +17,12 @@ export const useLoginForm = () => {
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+  const handleShowPassword = () => {
+    setIsPasswordShow(true);
+  };
+  const handleHidePassword = () => {
+    setIsPasswordShow(false);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -58,8 +65,11 @@ export const useLoginForm = () => {
     email,
     password,
     error,
+    isPasswordShow,
     handleEmailChange,
     handlePasswordChange,
     handleSubmit,
+    handleShowPassword,
+    handleHidePassword,
   };
 };

@@ -3,15 +3,19 @@ import { useState } from "react";
 import { Input } from "../registerModal/input";
 import logo from "../../assets/pictures/logo.jpeg";
 import { RegisterModal } from "../registerModal/register-modal";
+import { PasswordInput } from "../registerModal/password-input";
 
 export function LoginForm() {
   const {
     email,
     password,
     error,
+    isPasswordShow,
     handleEmailChange,
     handlePasswordChange,
     handleSubmit,
+    handleShowPassword,
+    handleHidePassword,
   } = useLoginForm();
 
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -50,14 +54,16 @@ export function LoginForm() {
               onChange={handleEmailChange}
               required
             />
-            <Input
+            <PasswordInput
               spanText={"Senha"}
               errorMessage={null}
               placeholder="Digite sua senha"
-              type="password"
               value={password}
               onChange={handlePasswordChange}
               required
+              isPasswordShow={isPasswordShow}
+              showPasswordFunction={handleShowPassword}
+              hidePasswordFunction={handleHidePassword}
             />
             {error && <p className="text-red-400 font-bold">{error}</p>}
             <div className=" m-auto py-4">
