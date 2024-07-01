@@ -7,11 +7,12 @@ import {
 } from "../../assets/svg/svgs";
 import { AgendarButton } from "../agendar-button";
 import logo from "../../assets/pictures/logo.jpeg";
+import { useUser } from "../../context/userContext";
 
 export function Navigation() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isWideScreen, setIsWideScreen] = useState(false);
-
+  const { userName, isLoggedIn, logout } = useUser();
   const checkWindowWidth = () => {
     setIsWideScreen(window.innerWidth >= 1024);
   };
@@ -29,6 +30,7 @@ export function Navigation() {
       <div>
         <section className="flex items-center ">
           <h1 className="pl-4 text-xl lg:hidden">BarberShop</h1>
+
           <div
             className="mx-8 space-y-2 absolute right-0 lg:hidden"
             // Toggle isNavOpen state on click
@@ -73,6 +75,7 @@ export function Navigation() {
                 src={logo}
                 alt=""
               />
+              {isLoggedIn && <p>Bem-vindo,{userName}</p>}
               <ul className="flex flex-col items-center gap-3 text-slate-200 lg:flex-row">
                 <NavigationLink linkDirection="/#home" title="Home" />
                 <NavigationLink linkDirection="/#about" title="Sobre" />
@@ -107,6 +110,11 @@ export function Navigation() {
                   linkDirection="/login"
                 />
               </div>
+              {isLoggedIn && (
+                <button onClick={logout} className="text-red-500">
+                  Logout
+                </button>
+              )}
             </div>
           </div>
         </section>

@@ -1,10 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/userContext";
 
 export const useLoginForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const { setUserName, setIsLoggedIn } = useUser();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -21,10 +25,25 @@ export const useLoginForm = () => {
         email,
         password,
       });
-      const token = response.data.token;
+      const { token } = response.data;
       localStorage.setItem("token", token);
+
+      const userInfoResponse = await axios.get(
+        "http://localhost:3333/user-info",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const { userName } = userInfoResponse.data;
+      localStorage.setItem("userName", userName);
+      setUserName(userName);
+      setIsLoggedIn(true);
+
       setError(null);
-      alert("Login realizado com sucesso!");
+      navigate("/Agendamento");
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         setError(error.response.data.error || "Erro ao fazer login");
