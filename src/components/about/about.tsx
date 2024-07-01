@@ -1,7 +1,10 @@
 import { AgendarButton } from "../agendar-button";
 import logo from "../../assets/pictures/logo.jpeg";
+import { useUser } from "../../context/userContext";
 
 export function About() {
+  const { isLoggedIn } = useUser();
+
   return (
     <section
       className="max-w-[80vw] m-auto py-10 xl:max-w-[70vw] 2xl:max-w-[50vw]"
@@ -23,7 +26,10 @@ export function About() {
             escolha preferida dos homens que valorizam qualidade, estilo e
             tradição.
           </p>
-          <AgendarButton text="Agendar Horário" linkDirection="/login" />
+          <AgendarButton
+            text="Agendar Horário"
+            linkDirection={`${isLoggedIn ? "/Agendamento" : "/login"}`}
+          />
         </div>
       </div>
     </section>

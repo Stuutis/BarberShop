@@ -5,8 +5,10 @@ import image1 from "../../../src/assets/pictures/amritpal-singh-wE-GAKR9WaY-unsp
 import image2 from "../../../src/assets/pictures/salah-regouane-8HkPnJhC5Ic-unsplash.jpg";
 import image3 from "../../../src/assets/pictures/ahmad-ebadi-zAsMbiVW5-M-unsplash.jpg";
 import { AgendarButton } from "../agendar-button";
+import { useUser } from "../../context/userContext";
 
 export function Portfolio() {
+  const { isLoggedIn } = useUser();
   return (
     <div className="m-auto max-w-[80vw] pb-10" id="portfolio">
       <div className="flex flex-col items-center justify-center">
@@ -77,7 +79,10 @@ export function Portfolio() {
         <p>
           Agende já seu horario e garanta o melhor estilo pelo melhor preço!
         </p>
-        <AgendarButton text="Agendar Horário" linkDirection="/login" />
+        <AgendarButton
+          text="Agendar Horário"
+          linkDirection={`${isLoggedIn ? "/Agendamento" : "/login"}`}
+        />
       </div>
     </div>
   );

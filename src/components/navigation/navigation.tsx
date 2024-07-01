@@ -69,14 +69,16 @@ export function Navigation() {
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </div>
-            <div className="lg:flex lg:items-center lg:justify-center ">
+            <div className="flex flex-col items-center  justify-center lg:flex-row">
               <img
                 className="rounded-2xl size-32 mb-5 sm:size-48 lg:size-10 lg:mb-0 lg:mx-6"
                 src={logo}
                 alt=""
               />
-              {isLoggedIn && <p>Bem-vindo,{userName}</p>}
-              <ul className="flex flex-col items-center gap-3 text-slate-200 lg:flex-row">
+              <div className="mb-3">
+                {isLoggedIn && <p>Bem-vindo, {userName}</p>}
+              </div>
+              <ul className="flex flex-col items-center gap-3 text-slate-200 lg:flex-row lg:pl-3">
                 <NavigationLink linkDirection="/#home" title="Home" />
                 <NavigationLink linkDirection="/#about" title="Sobre" />
                 <NavigationLink linkDirection="/#services" title="Serviços" />
@@ -107,12 +109,15 @@ export function Navigation() {
                 <AgendarButton
                   haveDirection
                   text="Agendar Horário"
-                  linkDirection="/login"
+                  linkDirection={`${isLoggedIn ? "/Agendamento" : "/login"}`}
                 />
               </div>
               {isLoggedIn && (
-                <button onClick={logout} className="text-red-500">
-                  Logout
+                <button
+                  onClick={logout}
+                  className="text-text-custom cursor-pointer"
+                >
+                  Sair
                 </button>
               )}
             </div>
