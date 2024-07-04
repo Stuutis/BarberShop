@@ -7,7 +7,7 @@ export function Schedules() {
       <Navigation />
       <div className="max-w-[80vw] mx-auto my-4">
         <div className="text-text-custom">
-          <h1>Meus agendamentos:</h1>
+          <h1 className="text-xl pl-1">Meus agendamentos:</h1>
           <MySchedulesCard
             name={"Christian teste"}
             professionalName={"O brabo"}

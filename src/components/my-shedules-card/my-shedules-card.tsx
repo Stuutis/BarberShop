@@ -12,7 +12,7 @@ export function MySchedulesCard({
   time,
 }: MyScheduleCardProps) {
   return (
-    <div>
+    <div className="mb-6">
       <div className="bg-secondary-custom my-2 p-4 rounded-xl">
         <p>{name}</p>
         <p>{professionalName}</p>

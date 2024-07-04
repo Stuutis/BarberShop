@@ -78,7 +78,8 @@ export function Navigation() {
                 src={logo}
                 alt=""
               />
-              <div className="mb-3">
+
+              <div className="mb-3 lg:mb-0">
                 {isLoggedIn && (
                   <p className="text-text-custom">Bem-vindo, {userName}</p>
                 )}
