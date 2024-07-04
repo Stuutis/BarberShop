@@ -62,8 +62,8 @@ export function Navigation() {
               <svg
                 className="h-9 w-9"
                 viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
+                fill="whitesmoke"
+                stroke="whitesmoke"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
